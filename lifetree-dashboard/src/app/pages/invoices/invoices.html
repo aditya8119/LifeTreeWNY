@@ -1,0 +1,181 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Current Job Listings" ba-panel-class="with-scroll">
+        <div class="horizontal-scroll">
+          <table class="table table-hover" st-table="displayedCollection" st-safe-src="invoicesTableData">
+            <div class="row">
+              <div class="col-md-1 add-row-editable-table">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input type="checkbox" id="inlineCheckbox01" value="option1" ng-model="isAllSelected" ng-change="selectAll(filteredItems, isAllSelected)">
+                  <span>Select All</span>
+                </label>
+              </div>
+              <div class="col-md-1 add-row-editable-table">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input type="checkbox" id="inlineCheckbox01" ng-model="isInvoiceFilterOn" value="option1" ng-change="filterInvoices(isInvoiceFilterOn, filteredItems); isAllSelected=false">
+                  <span>Invoices Only</span>
+                </label>
+              </div>
+              <div class="col-md-1 add-row-editable-table">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input type="checkbox" id="inlineCheckbox01" ng-model="isNonExportedFilterOn" value="option1" ng-change="filterNonExported(isNonExportedFilterOn, filteredItems); isAllSelected=false">
+                  <span>Non-Exported Only</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn-with-icon btn-sm" ng-click="toggleAlert()">
+                  <i class="ion-android-download"></i>Quickbooks ({{selectedCount(displayedCollection)}})</button>
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-danger btn-with-icon btn-sm" ng-click="syncProposals()" ng-show="!isSyncingWithRoutzy">
+                  <i class="ion-refresh"></i>
+                  Routzy Sync
+                </button>
+              </div>
+            </div>
+            <div class="row" ng-show="showAlert()">
+              <div class="col-md-4">
+                <div class="alert bg-warning">
+                  <h4>Confirmation</h4>
+                  <strong>You are about to enqueue:</strong> ({{selectedCount(displayedCollection)}}) jobs to Quickbooks.
+                  <div class="control-alert">
+                    <button type="button" class="btn btn-danger" ng-click="enqueue(displayedCollection)">Import</button>
+                    <button type="button" class="btn btn-primary" ng-click="toggleAlert()">Ignore</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-show="showSuccessImport()">
+              <div class="col-md-3">
+                <div class="alert bg-success">
+                  <h4>Success</h4>
+                  <strong>Jobs enqueued</strong>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-show="showErrorImport()">
+              <div class="col-md-3">
+                <div class="alert bg-error">
+                  <h4>Error</h4>
+                  <strong>Jobs not enqueued</strong>
+                </div>
+              </div>
+            </div>
+            <thead>
+              <tr class="sortable">
+                <th>#</th>
+                <th>View</th>
+                <th>Exported</th>
+                <th st-sort="first_name">First Name</th>
+                <th st-sort="last_name">Last Name</th>
+                <th st-sort="shipping_address_line_1">Address</th>
+                <th st-sort="shipping_address_postal_code">Zipcode</th>
+                <th st-sort="shipping_address_city">City</th>
+                <th st-sort="shipping_address_state">State</th>
+                <th st-sort="phone">Phone</th>
+                <th st-sort="email">Email</th>
+                <th st-sort="proposal_status">Status</th>
+                <th st-sort="proposal_type">Type</th>
+                <th st-sort="date" st-sort-default="reverse">Date</th>
+                <th st-sort="total">Total</th>
+                <th st-sort="tax_name">Tax Name</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>
+                  <input st-search="first_name" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="last_name" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="shipping_address_line_1" placeholder="Search.." class="input-sm form-control search-input" type="search"
+                  />
+                </th>
+                <th>
+                  <input st-search="shipping_address_postal_code" placeholder="Search.." class="input-sm form-control search-input" type="search"
+                  />
+                </th>
+                <th>
+                  <input st-search="shipping_address_city" placeholder="Search.." class="input-sm form-control search-input" type="search"
+                  />
+                </th>
+                <th>
+                  <input st-search="shipping_address_state" placeholder="Search.." class="input-sm form-control search-input" type="search"
+                  />
+                </th>
+                <th>
+                  <input st-search="phone" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="email" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="proposal_status" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="{{selectedPredicate}}" placeholder="Search.." class="input-sm form-control search-input" type="search"
+                  />
+                </th>
+                <th>
+                  <input st-search="date" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="total" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="tax_name" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+              </tr>
+            </thead>
+            <div class="spinner" ng-show="isSyncingWithRoutzy">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <tbody ng-show="!isSyncingWithRoutzy">
+              <tr ng-repeat="item in (filteredItems = (displayedCollection | filter:invoiceFilter))">
+                <td>
+                  <input type="checkbox" id="inlineCheckbox01" ng-model="item.isSelected">
+                </td>
+                <td>
+                  <div class="icons-list primary">
+                    <i ui-sref="details({id:item.proposal_id})" class="ion-search"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="icons-list primary">
+                    <i ng-if="item.qb_exported === 1" class="ion-checkmark-round" style="color:green;"></i>
+                    <i ng-if="item.qb_exported !== 1" class="ion-close-round" style="color:red;"></i>
+                  </div>
+                </td>
+                <td>{{item.first_name}}</td>
+                <td>{{item.last_name}}</td>
+                <td>{{item.shipping_address_line_1}}</td>
+                <td>{{item.shipping_address_postal_code}}</td>
+                <td>{{item.shipping_address_city}}</td>
+                <td>{{item.shipping_address_state}}</td>
+                <td>{{item.phone}}</td>
+                <td>
+                  <a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a>
+                </td>
+                <td>{{item.proposal_status}}</td>
+                <td>{{item.proposal_type}}</td>
+                <td>{{item.date | date:'MM-dd-yyyy' : '+0000'}}</td>
+                <td>${{item.total}}</td>
+                <td>{{item.tax_name}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

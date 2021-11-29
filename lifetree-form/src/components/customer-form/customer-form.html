@@ -1,0 +1,123 @@
+<div class="container form-container">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="centerBlock">
+            <div class="intro-area">
+                <div class="profile-userpic">
+                    <a href="https://www.lifetreewny.com/">
+                        <img src="../../assets/logo.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <h2 class="text-center">{{$ctrl.intro.title}}</h2>
+                <p class="text-center">
+                    {{$ctrl.intro.message}}
+                </p>
+            </div>
+            <form role="form" method="post" id="contact" ng-submit="$ctrl.submitForm()" ng-show="!$ctrl.formSubmitted">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="name">
+                            First Name:</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" maxlength="50" ng-model="$ctrl.form.firstname" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="name">
+                            Last Name:</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" maxlength="50" ng-model="$ctrl.form.lastname" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="name">
+                            Address:</label>
+                        <input type="text" class="form-control" id="address" name="address" maxlength="200" ng-model="$ctrl.form.address" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="city">
+                            City:</label>
+                        <input type="text" class="form-control" id="city" name="city" required maxlength="50" ng-model="$ctrl.form.city" required>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="zipcode">
+                            Zipcode:</label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" pattern="[0-9]{5}" required ng-model="$ctrl.form.zipcode"
+                            required>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="state">
+                            State:</label>
+                        <select class="form-control" id="state" name="state" ng-model="$ctrl.form.state" ng-options="key as value for (key , value) in $ctrl.states"
+                            required></select>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="email">
+                            Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" maxlength="50" placeholder="someone@example.com" ng-model="$ctrl.form.email"
+                            required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="email">
+                            Phone:</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required maxlength="50" placeholder="xxx-xxx-xxxx" ng-model="$ctrl.form.phone"
+                            required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <div>
+                            <label for="reference">
+                                How did you hear about us ?</label>
+                        </div>
+                        <!-- <input type="text" class="form-control" id="reference" name="reference" maxlength="50"> -->
+                        <select name="source" class="form-control" ng-model="$ctrl.form.source" required>
+                            <option value="Google" selected>Google</option>
+                            <option value="Yahoo">Yahoo</option>
+                            <option value="Amazon">Amazon</option>
+                            <option value="friends">Friends (Please tell us below)</option>
+                            <option value="Other">Other (Please tell us below)</option>
+                            <option value="radio">Radio</option>
+                            <option value="newspaper">Newspaper</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="reference">
+                            Voucher Code (Optional)</label>
+                        <input type="text" class="form-control" id="voucher" name="voucher" maxlength="50" ng-model="$ctrl.form.voucher">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="name">
+                            Message:</label>
+                        <textarea class="form-control" type="textarea" id="message" name="message" placeholder="Your Message Here" required maxlength="6000"
+                            rows="7" ng-model="$ctrl.form.message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <div vc-recaptcha key="$ctrl.key"></div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="$ctrl.captchaAlert">
+                    <div class="col-sm-6 form-group">
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Oh snap!</strong> Please try filling out the captcha.
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-submit btn-block" id="btnContactUs">
+                            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="$ctrl.inProgress"></span> Submit </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

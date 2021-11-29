@@ -1,0 +1,77 @@
+CREATE TABLE `proposal_details` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FK_Proposal_ID` varchar(255) NOT NULL,
+  `Item` varchar(100) DEFAULT NULL,
+  `Item Description` varchar(10000) DEFAULT NULL,
+  `Quantity` double DEFAULT NULL,
+  `Unit Price` double DEFAULT NULL,
+  `UOM` varchar(45) DEFAULT NULL,
+  `Taxable` varchar(45) DEFAULT NULL,
+  `Timestamp` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_Proposal_ID_idx` (`FK_Proposal_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `proposals` (
+  `Proposal ID` varchar(255) NOT NULL,
+  `Activity ID` varchar(255) DEFAULT NULL,
+  `First Name` varchar(255) DEFAULT NULL,
+  `Middle Name` varchar(255) DEFAULT NULL,
+  `Last Name` varchar(255) DEFAULT NULL,
+  `Company` varchar(255) DEFAULT NULL,
+  `Shipping Address Line 1` varchar(255) DEFAULT NULL,
+  `Shipping Address Line 2` varchar(255) DEFAULT NULL,
+  `Shipping Address City` varchar(255) DEFAULT NULL,
+  `Shipping Address State` varchar(255) DEFAULT NULL,
+  `Shipping Address Postal Code` varchar(255) DEFAULT NULL,
+  `Billing Address Line 1` varchar(255) DEFAULT NULL,
+  `Billing Address Line 2` varchar(255) DEFAULT NULL,
+  `Billing Address City` varchar(255) DEFAULT NULL,
+  `Billing Address State` varchar(255) DEFAULT NULL,
+  `Billing Address Postal Code` varchar(255) DEFAULT NULL,
+  `Proposal Name` varchar(255) DEFAULT NULL,
+  `Proposal Status` varchar(255) DEFAULT NULL,
+  `Proposal Source` varchar(255) DEFAULT NULL,
+  `Proposal Type` varchar(255) DEFAULT NULL,
+  `Proposal Number` varchar(255) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `Time` varchar(255) DEFAULT NULL,
+  `Subtotal` double DEFAULT NULL,
+  `Tax Total` double DEFAULT NULL,
+  `Total` double DEFAULT NULL,
+  `Tax Name` varchar(255) DEFAULT NULL,
+  `Tax Rate` varchar(255) DEFAULT NULL,
+  `Timestamp` varchar(255) DEFAULT NULL,
+  `Number Of Items` varchar(255) DEFAULT NULL,
+  `Customer Notes` varchar(15000) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Phone` varchar(100) DEFAULT NULL,
+  `QB_EXPORTED` decimal(1,0) unsigned zerofill NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Proposal ID`),
+  UNIQUE KEY `proposals_proposal id_unique` (`Proposal ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `form_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `address` varchar(500) DEFAULT NULL,
+  `zipcode` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `source` varchar(100) DEFAULT NULL,
+  `message` varchar(20000) DEFAULT NULL,
+  `voucher` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='Client Form data from dashboard.lifetreewny.com/form';
+
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`customer_updater`@`%` SQL SECURITY DEFINER VIEW `items matching` AS select `proposal_details`.`FK_Proposal_ID` AS `FK_Proposal_ID`,`proposals`.`Number Of Items` AS `Number Of Items`,count(`proposal_details`.`FK_Proposal_ID`) AS `Total_Proposal_Details` from (`proposal_details` join `proposals`) where ((`proposal_details`.`FK_Proposal_ID` = `proposals`.`Proposal ID`) and (`proposals`.`Number Of Items` <> (select count(`proposal_details`.`FK_Proposal_ID`) AS `Total_Proposal_Details` from `proposal_details` where (`proposal_details`.`FK_Proposal_ID` = `proposals`.`Proposal ID`) group by `proposal_details`.`FK_Proposal_ID`))) group by `proposal_details`.`FK_Proposal_ID`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`customer_updater`@`%` SQL SECURITY DEFINER VIEW `timestamps matching` AS select `proposals`.`Number Of Items` AS `Number Of Items`,`proposals`.`Proposal ID` AS `Proposal ID`,`proposals`.`Timestamp` AS `Timestamp`,`proposal_details`.`Timestamp` AS `proposalDetails.timestamp`,`proposal_details`.`Item` AS `Item` from (`proposal_details` join `proposals`) where ((`proposals`.`Proposal ID` = `proposal_details`.`FK_Proposal_ID`) and (`proposal_details`.`Timestamp` <> `proposals`.`Timestamp`));

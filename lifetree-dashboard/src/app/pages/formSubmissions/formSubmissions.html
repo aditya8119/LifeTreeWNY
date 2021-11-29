@@ -1,0 +1,97 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div ba-panel ba-panel-title="Submissions" ba-panel-class="with-scroll">
+        <div class="horizontal-scroll">
+          <div class="form-group select-page-size-wrap">
+            <label>Table Size
+              <select class="form-control show-tick" title="Rows on page" selectpicker ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+              </select>
+            </label>
+          </div>
+          <table class="table table-hover" st-table="displayedCollection" st-safe-src="peopleTableData">
+            <thead>
+              <tr class="sortable">
+                <th st-sort="id" class="table-id" st-sort-default="reverse">#</th>
+                <th st-sort="firstname">First Name</th>
+                <th st-sort="lastname">Last Name</th>
+                <th st-sort="address">Address</th>
+                <th st-sort="zipcode">Zipcode</th>
+                <th st-sort="city">City</th>
+                <th st-sort="phone">Phone</th>
+                <th st-sort="email">Email</th>
+                <th st-sort="source">Source</th>
+                <th>Message</th>
+                <th st-sort="timestamp">Timestamp</th>
+                <th st-sort="voucher">Voucher</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>
+                  <input st-search="firstname" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="lastname" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="address" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="zipcode" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="city" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="phone" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="email" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="source" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="message" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                  <input st-search="timestamp" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+                <th>
+                    <input st-search="voucher" placeholder="Search.." class="input-sm form-control search-input" type="search" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in displayedCollection">
+                <td class="table-id">{{item.id}}</td>
+                <td>{{item.firstname}}</td>
+                <td>{{item.lastname}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.zipcode}}</td>
+                <td>{{item.city}}</td>
+                <td>{{item.phone}}</td>
+                <td>
+                  <a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a>
+                </td>
+                <td>{{item.source}}</td>
+                <td class="text tooltip-loader">
+                  <span uib-tooltip="{{item.message}}" tooltip-placement="bottom">{{item.message}}</span>
+                </td>
+                <td>{{item.timestamp | date:'dd-M-yyyy H:mm' : '+0000'}}</td>
+                <td>{{item.voucher}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="12" class="text-center">
+                  <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="20"></div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

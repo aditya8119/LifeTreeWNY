@@ -1,0 +1,149 @@
+<div ba-panel ba-panel-class="profile-page">
+  <div class="panel-content">
+
+    <h3 class="with-line">Customer Information</h3>
+    <div class="row">
+      <div class="col-md-1">
+        <p>Name:</p>
+      </div>
+      <div class="col-md-6">
+        <h2>{{invoiceData.first_name}} {{invoiceData.last_name}}</h2>
+      </div>
+    </div>
+    <div ng-if="invoiceData.billing_address_line_1 || invoiceData.shipping_address_line_1" class="row top-buffer">
+      <div class="col-md-1">
+        <p>Billing Address:</p>
+      </div>
+      <div class="col-md-2">
+        <h5>{{invoiceData.billing_address_line_1}}</h5>
+        <h5>{{invoiceData.billing_address_city}}</h5>
+        <h5>{{invoiceData.billing_address_postal_code}}, {{invoiceData.billing_address_state}}</h5>
+      </div>
+      <div class="col-md-1">
+        <p>Shipping Address:</p>
+      </div>
+      <div class="col-md-2">
+        <h5>{{invoiceData.shipping_address_line_1}}</h5>
+        <h5>{{invoiceData.shipping_address_city}}</h5>
+        <h5>{{invoiceData.shipping_address_postal_code}}, {{invoiceData.shipping_address_state}}</h5>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-1">
+        <p>Contact:</p>
+      </div>
+      <div class="col-md-4">
+        <h5>{{invoiceData.email}}</h5>
+        <h5>{{invoiceData.phone}}</h5>
+      </div>
+    </div>
+    <div ng-if="invoiceData.company.length > 0" class="row top-buffer">
+      <div class="col-md-1">
+        <p>Company:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.company}}</h5>
+      </div>
+    </div>
+
+    <h3 class="with-line">Invoice</h3>
+
+    <div class="row">
+      <div class="col-md-1">
+        <p>Date Issued:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.date | date:'MM-dd-yyyy' : '+0000'}} {{invoiceData.time}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <p>Status:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.proposal_status}}</h5>
+        <h5>{{invoiceData.proposal_type}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <p>Last Modified:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.timestamp | date:'MM-dd-yyyy' : '+0000'}}</h5>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-1">
+        <p>Subtotal:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>${{invoiceData.subtotal}}</h5>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-1">
+        <p>Tax Name:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.tax_name}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <p>Tax Rate:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>{{invoiceData.tax_rate}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <p>Tax Total:</p>
+      </div>
+      <div class="col-md-6">
+        <h5>${{invoiceData.tax_total}}</h5>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-1">
+        <p>Total:</p>
+      </div>
+      <div class="col-md-6">
+        <h4>${{invoiceData.total}}</h4>
+      </div>
+    </div>
+    <div ng-if="invoiceData.customer_notes" class="row top-buffer">
+        <div class="col-md-1">
+          <p>Customer Notes:</p>
+        </div>
+        <div class="col-md-6">
+          <p>{{invoiceData.customer_notes}}</p>
+        </div>
+      </div>
+ 
+    <h3 class="with-line">Invoice Items</h3>
+    
+    <table class="table">
+      <thead>
+      <tr class="black-muted-bg">
+        <th>Item</th>
+        <th>Item Description</th>
+        <th>Quantity</th>
+        <th>Taxable</th>
+        <th>Unit Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in invoiceItemsData">
+        <td>{{item.item}}</td>
+        <td>{{item.item_description}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.taxable}}</td>
+        <td>${{item.unit_price}}</td>
+      </tr>
+      </tbody>
+    </table>
+ 
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.table-panel {
+  height: 295px;
+}
+
+.table td.text {
+  max-width: 177px;
+  span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      max-width: 100%;
+  }
+}
