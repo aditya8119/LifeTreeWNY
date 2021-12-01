@@ -1,0 +1,19 @@
+<div class="employeeModal">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <em class="ion-ios-close-empty sn-link-close"></em>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Edit Job Status</h4>
+    </div>
+    <div class="modal-body">
+      <div>Job Status : {{selectedStatus}}</div><br>
+      <label for="singleSelect"> Please select status </label><br>
+      <select ng-model="selectedStatus" required>
+        <option ng-repeat="status in jobStatuses">{{status.statusname}}</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+      <button type="button" class="btn btn-primary" ng-click="saveStatus(selectedStatus)">Save changes</button>
+    </div>
+  </div>

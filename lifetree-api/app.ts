@@ -73,6 +73,15 @@ class App {
       });
     });
 
+    router.post('/dashboard/proposals/update',(req: Request, res: Response) => {
+      dashboardHandler.processProposalsDataRequestUpdate(req.body).then((response: any) => {
+        res.status(200).send('success');
+      }, (error) => {
+        console.log(error);
+        res.status(500).send(error);
+      });
+    });
+
     router.get('/dashboard/routzy/sync/', this.authCheck, (req: Request, res: Response) => {
       console.log('request from dashboard - refresh jobs');
 

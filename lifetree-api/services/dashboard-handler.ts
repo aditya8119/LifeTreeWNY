@@ -60,6 +60,30 @@ class DashboardHandler {
       }
     });
   }
+  public processProposalsDataRequestUpdate(req: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      //verify request token\
+      if (_.isEmpty(req.proposal_id)) {
+        reject('invalid id');
+      }
+      let where: any = {
+        'Proposal ID': req.proposal_id,
+      }
+      let what: any = {
+        'Employee Notes': req.employee_notes,
+        'Job Status': req.job_status,
+        'Total': req.total
+      };
+
+      this.mysqlAdapter.update('proposals', where, what).then((success: any) => {
+        console.log(success);
+        resolve(success);
+      }, (error: any) => {
+        console.log(error);
+        reject(error);
+      });
+    });
+  }
 
   public processEnqueueQBRequest(req: any): Promise<any> {
     return new Promise((resolve, reject) => {

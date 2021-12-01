@@ -6,6 +6,7 @@
 
   angular.module('BlurAdmin.pages', [
       'ui.router',
+      'BlurAdmin.pages.employee',
       'BlurAdmin.pages.formSubmissions',
       'BlurAdmin.pages.invoices',
       'BlurAdmin.pages.quickbooks',

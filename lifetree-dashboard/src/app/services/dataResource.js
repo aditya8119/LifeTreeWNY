@@ -77,6 +77,18 @@
           return response;
         });
       },
+      updateInvoice: function (id, item) {
+        return $http({
+          method: 'POST',
+          url: 'http://localhost:4000/dashboard/proposals/update',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: item
+        }).then(function callback(response) {
+          return response;
+        });
+      },
     }
   }
 })();

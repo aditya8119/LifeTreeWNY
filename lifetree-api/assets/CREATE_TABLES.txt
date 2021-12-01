@@ -41,6 +41,8 @@ CREATE TABLE `proposals` (
   `Subtotal` double DEFAULT NULL,
   `Tax Total` double DEFAULT NULL,
   `Total` double DEFAULT NULL,
+  `Employee Notes` varchar(15000) DEFAULT NULL,
+  `Job Status` varchar(255) DEFAULT NULL,
   `Tax Name` varchar(255) DEFAULT NULL,
   `Tax Rate` varchar(255) DEFAULT NULL,
   `Timestamp` varchar(255) DEFAULT NULL,

@@ -1,0 +1,20 @@
+<div class="employeeModal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Notes</h4>
+    </div>
+    <div class="modal-body">
+        <label for="singleSelect"> Enter your text here </label><br>
+        <div class="form-group">
+            <textarea class="form-control" type="textarea" id="message" name="message" placeholder="Your Message Here"
+                required maxlength="6000" ng-model="msg"></textarea>
+        </div>
+        <div>{{msg}}</div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="ok(selectedStatus)">Save changes</button>
+    </div>
+</div>

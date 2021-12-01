@@ -102,3 +102,49 @@ $modal-input-border: #e7e7e7;
     text-align: center;
   }
 }
+.employeeModal {
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;
+    .form-control{
+      color: black;
+      background-color: transparent;
+      border: 1px solid $modal-input-border;
+      @include placeholderStyle($dropdown-text, 0.9);
+    }
+    .modal-body p, .modal-body div, .modal-body span{
+      color: black;
+    }
+  }
+  .modal-header {
+    text-align: center;
+    background: linear-gradient(45deg, #3d6b7b, transparent);
+   .modal-title {
+      color: #111;
+    }
+  }
+  .modal-footer {
+    background: linear-gradient(45deg, #3d6b7b, transparent);
+    padding: 15px;
+  }
+  .modal-body {
+    background: linear-gradient(45deg,#d7e4e8, transparent);
+    .form-control{
+      color: black;
+      background-color: #fff;
+      border: 1px solid $modal-input-border;
+      @include placeholderStyle($dropdown-text, 0.9);
+    }
+  }
+  .modal-icon{
+    margin-right: 3px;
+  }
+  .sn-link-close {
+    color: $dropdown-text;
+    font-size: 30px;
+    &:hover {
+      color: $danger;
+    }
+  }
+}
