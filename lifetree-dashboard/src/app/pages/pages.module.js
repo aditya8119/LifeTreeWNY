@@ -10,6 +10,7 @@
       'BlurAdmin.pages.formSubmissions',
       'BlurAdmin.pages.invoices',
       'BlurAdmin.pages.quickbooks',
+      'BlurAdmin.pages.maps',
       'auth0.auth0',
       'angular-jwt'
     ])

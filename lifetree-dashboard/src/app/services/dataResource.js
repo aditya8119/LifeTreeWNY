@@ -13,6 +13,14 @@
       sayHello: function () {
         return 'hello world';
       },
+      fetchAddress: function (id) {
+        return $http({
+          method: 'GET',
+          url: '/api/dashboard/proposals/address'
+        }).then(function callback(response) {
+          return response;
+        });
+      },
       fetchFormData: function () {
         return $http({
           method: 'GET',

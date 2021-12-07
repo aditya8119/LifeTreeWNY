@@ -1,0 +1,22 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12" ui-view autoscroll="true" autoscroll-body-top>
+      <div ba-panel ba-panel-title="Google Maps">
+        <div id ="maps">
+          <ng-map  map-type-id="TERRAIN" center="Buffalo, NY" zoom="10" style="height:600px">
+            <info-window id="myInfoWindow">
+              <div ng-non-bindable>
+                <h4>{{selectedAddress.name}}</h4>
+                <p>{{selectedAddress.address}}</p>
+                <p>{{selectedAddress.total}}</p>
+              </div>
+            </info-window>
+            <marker ng-repeat="c in customerLocation" position="{{c.pos}}"
+              on-click="showAddress(event,c)">
+            </marker>
+          </ng-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

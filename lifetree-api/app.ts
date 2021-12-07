@@ -46,6 +46,15 @@ class App {
       })
     });
 
+
+    router.get('/dashboard/proposals/address', function(req: any, res: any) {
+      console.log('request from dashboard- fetch addresses');
+      dashboardHandler.processCustomerAddressRequest(req).then((response: any) => {
+        console.log(response);
+        res.status(200).send(response);
+      });
+    });
+
     router.post('/form/post/', (req: Request, res: Response) => {
       // query a database and save data
       formHandler.processFormRequest(req.body).then((response: any) => {
