@@ -80,7 +80,7 @@
       updateInvoice: function (id, item) {
         return $http({
           method: 'POST',
-          url: 'http://localhost:4000/dashboard/proposals/update',
+          url: '/api/dashboard/proposals/update',
           headers: {
             'Content-Type': 'application/json'
           },
