@@ -1,35 +1,35 @@
 <div class="employeeModal">
-    <div class="modal-header">
-      <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
-        <em class="ion-ios-close-empty sn-link-close"></em>
-      </button>
-      <h4 class="modal-title" id="myModalLabel">Edit Payment Status</h4>
-    </div>
-    <div class="modal-body">
-      <div>Total Amount : ${{msg}}</div>
-      <form name="myForm">
-        <label>Enter Amount Paid by Customer:
-          <!-- current maximum value of amount is set to 10000$ -->
-          <input type="number" name="input" ng-model="example.value"
-                 min="0" max="10000" required>
-       </label>
-        <div role="alert">
-          <span class="error"  ng-show="!myForm.input.$valid" style="color:red;">
-            The number you have entered is incorrect. Please enter valid amount ranging from 0$ to 10000$</span>
-          <span class="error" color="danger" ng-show="myForm.input.$error.number" style="color:red;">
-            Not valid number!</span>
-        </div>
-        <div ng-if = "example.value">Amount Paid = ${{example.value}}</div><br/>
-        <div>Now due = ${{msg - example.value}}</div><br/>
-        <!-- error handling -->
-        <!-- <div>myForm.input.$valid = {{myForm.input.$valid}}</div><br/>
-        <div>myForm.input.$error = {{myForm.input.$error}}</div><br/>
-        <div>myForm.$valid = {{myForm.$valid}}</div><br/>
-        <div>myForm.$error.required = {{!!myForm.$error.required}}</div><br/> -->
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
-      <button type="button" class="btn btn-primary" ng-disabled="!myForm.input.$valid" ng-click="submit(msg - example.value, dismiss())">Save changes</button>
-    </div>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Edit Payment Status</h4>
   </div>
+  <div class="modal-body">
+    <div>Total Amount : ${{msg}}</div>
+    <form name="myForm">
+      <label>Enter Amount Paid by Customer:
+        <!-- current maximum value of amount is set to 10000$ -->
+        <input type="number" name="input" ng-model="example.value" ng-change="evaluateChange()"
+               min="0" max="10000" required>
+     </label>
+      <div role="alert">
+        <span class="error"  ng-show="!myForm.input.$valid" style="color:red;">
+          The number you have entered is incorrect. Please enter valid amount ranging from 0$ to 10000$</span>
+        <span class="error" color="danger" ng-show="myForm.input.$error.number" style="color:red;">
+          Not valid number!</span>
+      </div>
+      <div ng-if = "example.value">Amount Paid = ${{paidAmount}}</div><br/>
+      <div>Now due = ${{dueAmount}}</div><br/>
+      <!-- error handling -->
+      <!-- <div>myForm.input.$valid = {{myForm.input.$valid}}</div><br/>
+      <div>myForm.input.$error = {{myForm.input.$error}}</div><br/>
+      <div>myForm.$valid = {{myForm.$valid}}</div><br/>
+      <div>myForm.$error.required = {{!!myForm.$error.required}}</div><br/> -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-disabled="!myForm.input.$valid" ng-click="submit(dueAmount, dismiss())">Save changes</button>
+  </div>
+</div>
