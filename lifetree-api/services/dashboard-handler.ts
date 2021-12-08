@@ -10,6 +10,19 @@ class DashboardHandler {
     this.mysqlAdapter = mysqlAdapter;
   }
 
+  public processCustomerAddressRequest(req:any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      //verify request token
+      console.log("Fetching Customer Address from lifetee-api");
+      mysqlAdapter.selectAddress().then((success: any) => {
+        resolve(success);
+      }, (error: any) => {
+        reject(error);
+      });
+    });
+  }
+
+
   public processCustomerFormDataRequest(req: any): Promise<any> {
     return new Promise((resolve, reject) => {
       //verify request token

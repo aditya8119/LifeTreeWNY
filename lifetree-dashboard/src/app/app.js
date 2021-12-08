@@ -17,5 +17,6 @@ angular.module('BlurAdmin', [
   'BlurAdmin.pages',
   'BlurAdmin.login',
   'BlurAdmin.validate',
-  'BlurAdmin.services'
+  'BlurAdmin.services',
+  'ngMap'
 ]);
