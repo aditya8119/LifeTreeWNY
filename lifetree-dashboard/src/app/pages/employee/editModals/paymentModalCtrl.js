@@ -16,7 +16,13 @@
       var primaryId =  item.primaryId
       $scope.msg = params.totalAmount;
       $scope.example = {
-        value: 0
+        value: Math.round(0 * 100) / 100
+      };
+      $scope.paidAmount = Math.round(($scope.example.value)* 100) / 100
+      $scope.dueAmount = Math.round(($scope.msg - $scope.example.value)* 100) / 100
+      $scope.evaluateChange = function () {
+        $scope.paidAmount = Math.round(($scope.example.value)* 100) / 100
+        $scope.dueAmount = Math.round(($scope.msg - $scope.example.value)* 100) / 100
       };
       $scope.submit = function (DueAmount, dismiss) {
         var newItem = item;
