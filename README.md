@@ -8,12 +8,15 @@ I susmitha has pushed changes for the bugs to lifetree-dashboard/src/pages/emplo
 
 For Follow Up Email Feature a new Table has to be created:
  Following is the create script:
+ ```
  CREATE TABLE `email` (
   `title` varchar(500) DEFAULT NULL,
   `message` varchar(500) DEFAULT NULL,
   `cron` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 A default entry for the Email table is given below:
+```
 INSERT INTO `customers`.`email` (`title`, `message`, `cron`) VALUES ('Testing Title','Testing Message','* * * * *');
-
+```
