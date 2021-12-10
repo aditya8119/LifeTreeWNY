@@ -22,6 +22,35 @@ class DashboardHandler {
     });
   }
 
+  public getCustomerEmailDetails(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      mysqlAdapter.getCustomerEmailDetails().then((success: any) => {
+      resolve(success);
+      }, (error: any) => {
+        reject(error);
+      });
+    });
+  }
+  
+
+  public updateEmailConfig(req:any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let where: any = {};
+      let what: any = {
+        'title':  req.title,
+        'message': req.message,
+        'cron': req.cron
+      };
+      console.log(where);
+      console.log(what);
+      this.mysqlAdapter.update('email',where, what).then((success: any) => {
+      resolve(success);
+      }, (error: any) => {
+        reject(error);
+      });
+    });
+  }
+
 
   public processCustomerFormDataRequest(req: any): Promise<any> {
     return new Promise((resolve, reject) => {

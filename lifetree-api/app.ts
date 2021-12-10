@@ -55,6 +55,15 @@ class App {
       });
     });
 
+    router.post('/dashboard/email/update', function(req: Request, res: Response) {
+      console.log('Request from Follow Up Email DashBoard');
+      console.log(req.body);
+      dashboardHandler.updateEmailConfig(req.body).then((response: any) => {
+        console.log(response);
+        res.status(200).send(response);
+      });
+    });
+
     router.post('/form/post/', (req: Request, res: Response) => {
       // query a database and save data
       formHandler.processFormRequest(req.body).then((response: any) => {

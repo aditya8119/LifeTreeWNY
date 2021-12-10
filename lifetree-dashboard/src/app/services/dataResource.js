@@ -97,6 +97,18 @@
           return response;
         });
       },
+      updateFollowUpConfig: function (selection) {
+        return $http({
+          method: 'POST',
+          url: '/api/dashboard/email/update',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data:selection
+        }).then(function callback(response) {
+          return response;
+        });
+      },
     }
   }
 })();

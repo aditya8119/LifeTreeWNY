@@ -30,6 +30,14 @@ class MysqlAdapter {
     });
   }
 
+  public getCustomerEmailDetails(): Promise<any> {
+    return this.knex.raw('SELECT `First Name`as firstName, `Last Name` as lastName, `Email` as email, `Phone` as phone  FROM `customers`.`proposals` where email!="" and phone!="";').then((rows: any) => {
+      return rows;
+    }, (error: any) => {
+      return error;
+    });
+  }
+
   public select(table: String, column: String, values: Array<String>): Promise<any> {
     return this.knex(table).whereIn(column, values).then((rows: any) => {
       return rows;

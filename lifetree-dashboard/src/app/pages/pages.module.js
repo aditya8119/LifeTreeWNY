@@ -11,6 +11,7 @@
       'BlurAdmin.pages.invoices',
       'BlurAdmin.pages.quickbooks',
       'BlurAdmin.pages.maps',
+      'BlurAdmin.pages.email',
       'auth0.auth0',
       'angular-jwt'
     ])
