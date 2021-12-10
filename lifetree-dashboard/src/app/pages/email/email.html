@@ -1,0 +1,83 @@
+<div class="widgets">
+    <div class="container" style="padding:20px; margin-top:30px;width: 50%; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="row">
+            <div class="col-md-12">
+                <div ba-panel ba-panel-title="Follow Up Email" ba-panel-class="with-scroll">
+                    <form name="userForm" ng-submit="saveConfig()" novalidate>
+                        <div class="form-group"  ng-class="{ 'has-error' : userForm.title.$invalid && !userForm.title.$pristine }">
+                            <label for="input01">Title</label>
+                            <input name ="title" type="text" class="form-control" id="input01" ng-model="$parent.title"
+                                placeholder="Enter Title Here....." required>
+                            <p ng-show="userForm.title.$invalid && !userForm.title.$pristine" class="help-block">Enter some Title.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : userForm.message.$invalid && !userForm.message.$pristine }">
+                            <label for="textarea01">Message</label>
+                            <textarea name="message" placeholder="Type Message Here...." class="form-control" ng-model="$parent.message"
+                                id="textarea01" required></textarea>
+                            <p ng-show="userForm.message.$invalid && !userForm.message.$pristine" class="help-block">Enter some Message.</p>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4" style="padding-left: 0px;">
+                                <label for="textarea01">Minute(s)</label>
+                                <ui-select ng-model="minselection.selected" >
+                                    <ui-select-match >{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="minute in minutes track by $index">
+                                        <div ng-bind-html="minute.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="textarea01">Hour(s)</label>
+                                <ui-select ng-model="hourselection.selected" >
+                                    <ui-select-match >{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="hour in hours track by $index">
+                                        <div ng-bind-html="hour.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-4" style="padding-right: 0px;">
+                                <label for="textarea01">Month(s)</label>
+                                <ui-select ng-model="monselection.selected" >
+                                    <ui-select-match >{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="mon in months track by $index">
+                                        <div ng-bind-html="mon.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6" style="padding-left: 0px;">
+                                <label for="textarea01">Day(s)</label>
+                                <ui-select ng-model="dayselection.selected" >
+                                    <ui-select-match >{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="day in days track by $index">
+                                        <div ng-bind-html="day.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-6" style="padding-right: 0px;">
+                                <label for="textarea01">Weekday(s)</label>
+                                <ui-select ng-model="weekselection.selected" >
+                                    <ui-select-match >{{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="week in weekdays track by $index">
+                                        <div ng-bind-html="week.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 button-row" style="margin-top: 20px; padding-left: 0px;">
+                                <button class="btn btn-info" ng-disabled="userForm.$invalid">Save Follow Up Config</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

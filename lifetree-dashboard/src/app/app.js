@@ -18,5 +18,7 @@ angular.module('BlurAdmin', [
   'BlurAdmin.login',
   'BlurAdmin.validate',
   'BlurAdmin.services',
-  'ngMap'
+  'ngMap',
+  'ui.select', 
+  'ngSanitize'
 ]);
