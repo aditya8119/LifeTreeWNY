@@ -6,8 +6,7 @@ Below 2 columns are to be created in db for proposals
 
 I susmitha has pushed changes for the bugs to lifetree-dashboard/src/pages/employee
 
-For Follow Up Email Feature a new Table has to be created:
- Following is the create script:
+For Follow Up Email Feature a new table has to be created:
  ```
  CREATE TABLE `email` (
   `title` varchar(500) DEFAULT NULL,
